@@ -48,7 +48,11 @@ export const BookDetail = () => {
             </Typography>
             <Typography color="text.secondary" variant="h4" component="div">
               Borrowed By:{" "}
-              <span style={{ color: "black" }}>{book.Borrowedby}</span>
+              <span style={{ color: "black" }}>
+                {book.Borrowedby == null
+                  ? "-"
+                  : `${book.firstname} ${book.lastname} `}
+              </span>
             </Typography>
 
             <Typography color="text.secondary" variant="h4" component="div">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -6,7 +6,7 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 const data = {
   id: 1,
@@ -15,6 +15,20 @@ const data = {
 };
 
 export const StudentDetail = () => {
+  const [studid] = useSearchParams();
+  const id = studid.get("id");
+  console.log(id);
+  const [student, setStudents] = useState({});
+  useEffect(async () => {
+    const res = await fetch(`http://localhost:4000/student/details/${id}`, {
+      mode: "cors",
+    });
+    const response = await res.json();
+    console.log(response);
+    setStudents(response.data);
+    console.log(student);
+  }, []);
+
   return (
     <div className="containers listbg">
       <div className="detailAlign studentLabel">
@@ -24,18 +38,19 @@ export const StudentDetail = () => {
         <Card align="left" sx={{ maxWidth: 500, minHeight: 230 }}>
           <CardContent>
             <Typography color="text.secondary" variant="h5" component="div">
-              Student ID: <span style={{ color: "black" }}>{data.id}</span>
+              Student ID: <span style={{ color: "black" }}>{student.id}</span>
             </Typography>
             <Typography color="text.secondary" variant="h5" component="div">
               First Name:{" "}
-              <span style={{ color: "black" }}>{data.firstName}</span>
+              <span style={{ color: "black" }}>{student.firstname}</span>
             </Typography>
             <Typography color="text.secondary" variant="h5" component="div">
-              Last Name: <span style={{ color: "black" }}>{data.lastName}</span>
+              Last Name:{" "}
+              <span style={{ color: "black" }}>{student.lastname}</span>
             </Typography>
           </CardContent>
           <CardActions>
-            <Link to={"/StudentEdit"}>
+            <Link to={`/StudentEdit?id=${student.id}`}>
               <Button variant="contained" size="small">
                 Update
               </Button>

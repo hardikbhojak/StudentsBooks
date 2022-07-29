@@ -32,6 +32,14 @@ export const BookDetail = () => {
     console.log(book);
   }, []);
 
+  const deleteBook = async () => {
+    await fetch(`http://localhost:4000/book/details/${id}`, {
+      method: "DELETE",
+      mode: "cors",
+      // headers: { "Content-Type": "application/json" },
+    });
+  };
+
   return (
     <div className="containers listbg">
       <div className="detailAlign studentLabel">
@@ -65,13 +73,14 @@ export const BookDetail = () => {
             </Typography>
           </CardContent>
           <CardActions>
-            <Link to={"/BookEdit"}>
+            <Link to={`/BookEdit?id=${book.Bookid}`}>
               <Button variant="contained" size="large">
                 Update
               </Button>
             </Link>
             <Link to={"/BookList"}>
               <Button
+                onClick={() => deleteBook()}
                 style={{ marginLeft: "10px" }}
                 variant="contained"
                 color="error"

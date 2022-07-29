@@ -55,6 +55,12 @@
   flex: 1;
   justify-content: center;
 }
+.align{
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  margin-bottom: 150px;
+}
 .detailstxt{
   display: flex;
   flex: 1;

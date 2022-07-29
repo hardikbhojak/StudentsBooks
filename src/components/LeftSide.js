@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from "@mui/material/Button";
+import { Button, Avatar } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
@@ -21,6 +21,13 @@ const theme = createTheme({
 export const LeftSide = () => {
   return (
     <div className="">
+      <div className="align">
+        <Avatar
+          alt="Remy Sharp"
+          src="./student.png"
+          sx={{ width: 200, height: 200 }}
+        />
+      </div>
       <div className="detailAlign">
         <Link to={"/StudentList"}>
           <button>

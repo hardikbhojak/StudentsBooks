@@ -24,10 +24,17 @@ export const StudentDetail = () => {
       mode: "cors",
     });
     const response = await res.json();
-    console.log(response);
     setStudents(response.data);
     console.log(student);
   }, []);
+
+  const deleteStudent = async () => {
+    await fetch(`http://localhost:4000/student/details/${id}`, {
+      method: "DELETE",
+      mode: "cors",
+      // headers: { "Content-Type": "application/json" },
+    });
+  };
 
   return (
     <div className="containers listbg">
@@ -56,7 +63,12 @@ export const StudentDetail = () => {
               </Button>
             </Link>
             <Link to={"/StudentList"}>
-              <Button variant="contained" color="error" size="small">
+              <Button
+                onClick={() => deleteStudent()}
+                variant="contained"
+                color="error"
+                size="small"
+              >
                 Delete
               </Button>
             </Link>

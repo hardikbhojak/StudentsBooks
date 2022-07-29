@@ -8,12 +8,6 @@ import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
 import { Link, useSearchParams } from "react-router-dom";
 
-const data = {
-  id: 1,
-  firstName: "John",
-  lastName: "Doe",
-};
-
 export const StudentEdit = () => {
   const [studid] = useSearchParams();
   const id = studid.get("id");
@@ -28,13 +22,15 @@ export const StudentEdit = () => {
       mode: "cors",
     });
     const response = await res.json();
+    setfirstname(response.data.firstname);
+    setlastname(response.data.lastname);
     console.log(response);
     setStudents(response.data);
     console.log(student);
   }, []);
 
   const updateData = async () => {
-    console.log("updateData 36", firstname, lastname);
+    console.log(firstname, lastname);
     await fetch(`http://localhost:4000/student/details/${id}`, {
       method: "POST",
       mode: "cors",

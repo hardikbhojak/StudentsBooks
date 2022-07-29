@@ -28,11 +28,47 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+
+  body{
+    margin:0px;
   }
-  to {
-    transform: rotate(360deg);
-  }
+
+.containers{
+  display: grid;
+  height: 100vh;
+}
+.listbg{
+  background-color: rgb(64, 65, 69);
+}
+.detailsbg{
+  background-color: rgb(128, 128, 128);
+}
+.listtxt{
+  display: flex;
+  flex: 1;
+  justify-content: end;
+  color: rgb(128, 128, 128);
+  text-shadow: 2px 2px black;
+}
+.detailAlign{
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+.detailstxt{
+  display: flex;
+  flex: 1;
+  /* justify-content: start; */
+  color: rgb(64, 65, 69);
+  text-shadow: 2px 2px black;
+}
+
+.studentLabel{
+  color: rgb(128, 128, 128);
+  text-shadow: 2px 2px black;
+}
+
+.bookLabel{
+  color: rgb(64, 65, 69);
+  text-shadow: 2px 2px black;
 }

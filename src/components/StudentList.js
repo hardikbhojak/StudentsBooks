@@ -36,9 +36,8 @@ export const StudentList = () => {
       mode: "cors",
     });
     const response = await res.json();
-    console.log(response);
+
     setstudents(response.data);
-    console.log(students);
   }, []);
   return (
     <div className="containers listbg">

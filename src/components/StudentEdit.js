@@ -11,7 +11,7 @@ import { Link, useSearchParams } from "react-router-dom";
 export const StudentEdit = () => {
   const [studid] = useSearchParams();
   const id = studid.get("id");
-  console.log(id);
+
   const [student, setStudents] = useState({});
   const [firstname, setfirstname] = useState("");
   const [lastname, setlastname] = useState("");
@@ -24,9 +24,8 @@ export const StudentEdit = () => {
     const response = await res.json();
     setfirstname(response.data.firstname);
     setlastname(response.data.lastname);
-    console.log(response);
+
     setStudents(response.data);
-    console.log(student);
   }, []);
 
   const updateData = async () => {

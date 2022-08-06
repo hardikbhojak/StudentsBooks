@@ -11,7 +11,7 @@ import { Link, useSearchParams } from "react-router-dom";
 export const BookEdit = () => {
   const [bookid] = useSearchParams();
   const id = bookid.get("id");
-  console.log(id);
+
   const [book, setbooks] = useState({});
   const [bookname, setbookname] = useState("");
   const [authorname, setauthorname] = useState("");

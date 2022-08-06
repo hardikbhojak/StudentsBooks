@@ -8,12 +8,6 @@ import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
 import { Link, useSearchParams } from "react-router-dom";
 
-const data = {
-  id: 1,
-  firstName: "John",
-  lastName: "Doe",
-};
-
 export const StudentDetail = () => {
   const [studid] = useSearchParams();
   const id = studid.get("id");
@@ -25,15 +19,18 @@ export const StudentDetail = () => {
     });
     const response = await res.json();
     setStudents(response.data);
-    console.log(student);
   }, []);
 
   const deleteStudent = async () => {
-    await fetch(`http://localhost:4000/student/details/${id}`, {
-      method: "DELETE",
-      mode: "cors",
-      // headers: { "Content-Type": "application/json" },
-    });
+    if (window.confirm("Are you sure you want to delete this student")) {
+      await fetch(`http://localhost:4000/student/details/${id}`, {
+        method: "DELETE",
+        mode: "cors",
+        // headers: { "Content-Type": "application/json" },
+      });
+    } else {
+      alert("Data not deleted");
+    }
   };
 
   return (

@@ -33,12 +33,11 @@ export const BookDetail = () => {
   }, []);
 
   const deleteBook = () => {
-    // alert("Are you sure you want to deleteBook");
     if (window.confirm("Are you sure you want to deleteBook")) {
       fetch(`http://localhost:4000/book/details/${id}`, {
         method: "DELETE",
         mode: "cors",
-        headers: { "Content-Type": "application/json" },
+        // headers: { "Content-Type": "application/json" },
       });
     } else {
       alert("Data not Deleted");

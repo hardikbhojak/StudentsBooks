@@ -17,7 +17,7 @@ const data = {
 export const StudentDetail = () => {
   const [studid] = useSearchParams();
   const id = studid.get("id");
-  console.log(id);
+
   const [student, setStudents] = useState({});
   useEffect(async () => {
     const res = await fetch(`http://localhost:4000/student/details/${id}`, {
@@ -74,6 +74,9 @@ export const StudentDetail = () => {
             </Link>
           </CardActions>
         </Card>
+        <Link to={"/studentlist"}>
+          <button>Back</button>
+        </Link>
       </Container>
     </div>
   );

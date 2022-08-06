@@ -8,7 +8,8 @@ import { StudentDetail } from "./components/StudentDetail";
 import { BookDetail } from "./components/BookDetail";
 import { BookEdit } from "./components/BookEdit";
 import { StudentEdit } from "./components/StudentEdit";
-
+import { StudentAdd } from "./components/StudentAdd";
+import { BookAdd } from "./components/BookAdd";
 function App() {
   return (
     <div>
@@ -21,6 +22,8 @@ function App() {
           <Route path="/BookDetail" element={<BookDetail />} />
           <Route path="/BookEdit" element={<BookEdit />} />
           <Route path="/StudentEdit" element={<StudentEdit />} />
+          <Route path="/StudentAdd" element={<StudentAdd />} />
+          <Route path="/BookAdd" element={<BookAdd />} />
         </Routes>
       </Router>
     </div>

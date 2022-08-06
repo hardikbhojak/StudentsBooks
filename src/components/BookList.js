@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Container } from "@mui/material";
+import { Button, Container } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -110,6 +110,19 @@ export const BookList = () => {
               </Table>
             </TableContainer>
           </Paper>
+          <Link to="../../../../../">
+            <button>Back</button>
+          </Link>
+          <Link to="/BookAdd">
+            <Button
+              style={{ marginLeft: "10px", marginTop: "10px" }}
+              variant="contained"
+              size="medium"
+              color="success"
+            >
+              Add
+            </Button>
+          </Link>
         </Container>
       </div>
     </div>

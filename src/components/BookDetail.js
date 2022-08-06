@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
 import { Link, useSearchParams } from "react-router-dom";
-
+import { StudentAdd } from "./StudentAdd";
 const data = {
   id: 1,
   bookName: "John",
@@ -20,24 +20,29 @@ const data = {
 export const BookDetail = () => {
   const [bookid] = useSearchParams();
   const id = bookid.get("id");
-  console.log(id);
   const [book, setBook] = useState({});
   useEffect(async () => {
+    console.log("book list");
     const res = await fetch(`http://localhost:4000/book/details/${id}`, {
       mode: "cors",
     });
     const response = await res.json();
     console.log(response);
     setBook(response.data);
-    console.log(book);
+    console.log("Last");
   }, []);
 
-  const deleteBook = async () => {
-    await fetch(`http://localhost:4000/book/details/${id}`, {
-      method: "DELETE",
-      mode: "cors",
-      // headers: { "Content-Type": "application/json" },
-    });
+  const deleteBook = () => {
+    // alert("Are you sure you want to deleteBook");
+    if (window.confirm("Are you sure you want to deleteBook")) {
+      fetch(`http://localhost:4000/book/details/${id}`, {
+        method: "DELETE",
+        mode: "cors",
+        headers: { "Content-Type": "application/json" },
+      });
+    } else {
+      alert("Data not Deleted");
+    }
   };
 
   return (
@@ -46,7 +51,7 @@ export const BookDetail = () => {
         <h1>Book Details</h1>
       </div>
       <Container align="center">
-        <Card align="left" sx={{ minWidth: 600, minHeight: 500 }}>
+        <Card align="left" sx={{ minWidth: 600, minHeight: 400 }}>
           <CardContent>
             <Typography color="text.secondary" variant="h3" component="div">
               Book Name: <span style={{ color: "black" }}>{book.Bookname}</span>
@@ -80,13 +85,24 @@ export const BookDetail = () => {
             </Link>
             <Link to={"/BookList"}>
               <Button
-                onClick={() => deleteBook()}
+                onClick={() => {
+                  deleteBook();
+                }}
                 style={{ marginLeft: "10px" }}
                 variant="contained"
                 color="error"
                 size="large"
               >
                 Delete
+              </Button>
+            </Link>
+            <Link to={"/booklist"}>
+              <Button
+                style={{ marginLeft: "10px" }}
+                variant="outlined"
+                size="large"
+              >
+                Back
               </Button>
             </Link>
           </CardActions>

@@ -8,35 +8,19 @@ import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
 import { Link, useSearchParams } from "react-router-dom";
 
-export const StudentEdit = () => {
-  const [studid] = useSearchParams();
-  const id = studid.get("id");
-  console.log(id);
-  const [student, setStudents] = useState({});
+export const StudentAdd = () => {
   const [firstname, setfirstname] = useState("");
   const [lastname, setlastname] = useState("");
 
-  useEffect(async () => {
-    console.log("useEffect");
-    const res = await fetch(`http://localhost:4000/student/details/${id}`, {
-      mode: "cors",
-    });
-    const response = await res.json();
-    setfirstname(response.data.firstname);
-    setlastname(response.data.lastname);
-    console.log(response);
-    setStudents(response.data);
-    console.log(student);
-  }, []);
-
-  const updateData = async () => {
-    console.log(firstname, lastname);
-    await fetch(`http://localhost:4000/student/details/${id}`, {
+  const addData = async () => {
+    const res = await fetch(`http://localhost:4000/student/addstudent`, {
       method: "POST",
       mode: "cors",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ first: firstname, last: lastname }),
+      body: JSON.stringify({ firstname: firstname, lastname: lastname }),
     });
+    const response = res.json();
+    console.log(response);
   };
 
   return (
@@ -48,15 +32,11 @@ export const StudentEdit = () => {
         <Card align="left" sx={{ maxWidth: 500, minHeight: 230 }}>
           <CardContent>
             <Typography color="text.secondary" variant="h5" component="div">
-              Student ID: <span style={{ color: "black" }}>{student.id}</span>
-            </Typography>
-            <Typography color="text.secondary" variant="h5" component="div">
               First Name:{" "}
               <input
                 style={{ padding: "1px", fontSize: "15pt" }}
                 type="text"
-                name="firstName"
-                defaultValue={student.firstname}
+                name="firstname"
                 onChange={(e) => setfirstname(e.target.value)}
                 placeholder="First Name"
               />
@@ -66,23 +46,19 @@ export const StudentEdit = () => {
               <input
                 style={{ padding: "1px", fontSize: "15pt" }}
                 type="text"
-                defaultValue={student.lastname}
-                name="lastName"
+                name="lastname"
                 onChange={(e) => setlastname(e.target.value)}
                 placeholder="Last Name"
               />
             </Typography>
           </CardContent>
           <CardActions>
-            <Link
-              onClick={() => updateData()}
-              to={`/StudentDetail?id=${student.id}`}
-            >
+            <Link onClick={() => addData()} to={"/Studentlist"}>
               <Button variant="contained" color="success" size="small">
                 Save
               </Button>
             </Link>
-            <Link to={`/StudentDetail?id=${student.id}`}>
+            <Link to={`/studentlist`}>
               <Button variant="contained" color="error" size="small">
                 Cancel
               </Button>

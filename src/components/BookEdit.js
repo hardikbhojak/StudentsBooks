@@ -52,7 +52,7 @@ export const BookEdit = () => {
         <h1>Book Edit</h1>
       </div>
       <Container align="center">
-        <Card align="left" sx={{ minWidth: 600, minHeight: 500 }}>
+        <Card align="left" sx={{ minWidth: 600, minHeight: 400 }}>
           <CardContent>
             <Typography
               style={{ margin: "2px" }}
@@ -113,7 +113,6 @@ export const BookEdit = () => {
               <input
                 style={{ padding: "1px", fontSize: "20pt" }}
                 type="text"
-                // defaultValue={data.returnBefore.toLocaleDateString("en-IN")}
                 defaultValue={book.Returndate}
                 onChange={(e) => setreturndate(e.target.value)}
                 name="lastName"
@@ -128,6 +127,11 @@ export const BookEdit = () => {
             >
               <Button color="success" variant="contained" size="large">
                 Save
+              </Button>
+            </Link>
+            <Link to={`/bookdetail?id=${book.Bookid}`}>
+              <Button color="error" variant="contained" size="large">
+                Cancel
               </Button>
             </Link>
           </CardActions>
